@@ -7,7 +7,7 @@ export const Container = styled.div`
 
     display: grid;
     grid-template-columns: 250px auto;
-    grid-template-rows: 150px 128px auto 64px;
+    grid-template-rows: 105px 128px auto 64px;
     grid-template-areas: 
     "brand header"
     "menu search"
@@ -19,7 +19,6 @@ export const Container = styled.div`
 `;
 export const Brand = styled.div`
     grid-area: brand;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +38,6 @@ export const Brand = styled.div`
 export const Menu = styled.ul`
     grid-area: menu;
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-
     padding-top: 63px;
     text-align: center; 
 
