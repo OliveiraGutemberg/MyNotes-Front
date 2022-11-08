@@ -41,7 +41,7 @@ export function Home() {
     }
 
     useEffect(() => {
-        async function fetchTags(){
+        async function fetchTags(){ 
             const response = await api.get("/tags");
             setTags(response.data);
         }
