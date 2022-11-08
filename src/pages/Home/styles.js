@@ -41,7 +41,7 @@ export const Menu = styled.ul`
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
 
     padding-top: 63px;
-    text-align: center;
+    text-align: center; 
 
     > li{
         margin-bottom: 24px;
