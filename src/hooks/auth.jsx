@@ -14,7 +14,7 @@ function AuthProvider({ children }){
             const { user, token } = response.data;
 
             localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
-            localStorage.setItem("@rocketnotes:token", JSON.stringify(token));
+            localStorage.setItem("@rocketnotes:token", token);
 
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             setData({ user, token });
