@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useReducer } from "react";
+import { useHref, useNavigate } from "react-router-dom";
 import { FiPlus, FiSearch } from 'react-icons/fi';
 import { api } from "../../services/api";
 
@@ -12,10 +12,35 @@ import { Note } from '../../components/Note';
 import { Section } from '../../components/Section';
 
 export function Home() {
-    const [ tags, setTags ] = useState([]);
+    //const [ tags, setTags ] = useState([]);
     const [ tagsSelected, setTagsSelected ] = useState([]);
     const [ searche, setSearch ] = useState("");
     const [ notes, setNotes ] = useState([]);
+
+    async function reducer(state, action){
+        const { data } = await api.get("/tags");
+        
+        //setTags(response.data);
+        if(action.type == "tags") {
+            state = data 
+            console.log(state)
+        }
+        // switch (action.type){
+        //     case "tags":
+        //      return {tags: data}  
+        // }
+        
+ 
+    }
+
+    const [ state, dispatch ] = useReducer(reducer, {
+        tags: [],
+        tagsSelected: [],
+        searche: "",
+        notes:[]
+    });
+
+    const { tags } = state
 
     const navigate = useNavigate();
 
@@ -35,16 +60,11 @@ export function Home() {
     }
 
     function handleDetails(id){
-        navigate(`/details/${id}`);
+        navigate(`/details/:${id}`);
     }
 
     useEffect(() => {
-        async function fetchTags(){ 
-            const response = await api.get("/tags");
-            setTags(response.data);
-        }
-
-        fetchTags();
+        dispatch({type: "tags"})
     }, [])
 
     useEffect(() => {
