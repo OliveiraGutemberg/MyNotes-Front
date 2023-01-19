@@ -14,8 +14,9 @@ import { Section } from '../../components/Section';
 export function Home() {
     //const [ tags, setTags ] = useState([]);
     const [ tagsSelected, setTagsSelected ] = useState([]);
-    const [ searche, setSearch ] = useState("");
+    const [ search, setSearch ] = useState("");
     const [ notes, setNotes ] = useState([]);
+    console.log(search)
 
     async function reducer(state, action){
         const { data } = await api.get("/tags");
@@ -48,6 +49,7 @@ export function Home() {
         if(tagName === "all"){
             return setTagsSelected([])
         }
+        
         const alreadySelected = tagsSelected.includes(tagName);
 
         if(alreadySelected){
@@ -69,12 +71,12 @@ export function Home() {
 
     useEffect(() => {
         async function fetchNotes() {
-            const response = await api.get(`/notes?title=${searche}&tags=${tagsSelected}`);
+            const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`);
             setNotes(response.data);
         }
 
         fetchNotes();
-    }, [tagsSelected, searche])
+    }, [tagsSelected, search])
 
     return (
         <Container>

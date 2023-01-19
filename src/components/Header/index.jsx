@@ -2,8 +2,7 @@ import { RiShutDownLine } from 'react-icons/ri'
 import { useAuth } from "../../hooks/auth"
 import { Container, Profile, Logout } from "./styles";
 import { api } from "../../services/api";
-
-import avatarPlaceholder from "../../assets/blank-profile-picture-973460.svg"
+import avatarPlaceholder from "../../assets/blank-profile-picture-973460_1280.png"
 
 export function Header(){
     const { signOut, user } = useAuth();
